@@ -11,6 +11,7 @@ use App\Actions\Auth\StoreUserAction;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User\UserResource;
 use App\Response\User\SingleUserResponse;
+use Illuminate\Auth\AuthManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
@@ -49,8 +50,8 @@ class AuthController extends Controller
         }
     }
 
-    public function logout () : JsonResponse {
-        Auth::logout();
+    public function logout (AuthManager $auth) : JsonResponse {
+        $auth->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => "Utilisateur déconnecté avec succès",
             'status_code' => 200,

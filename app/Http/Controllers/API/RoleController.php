@@ -26,7 +26,7 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : RoleCollectionResponse | LengthAwarePaginator
+    public function index(AuthManager $auth) : RoleCollectionResponse | LengthAwarePaginator
     {
         return new RoleCollectionResponse(
             statusCode : 200,

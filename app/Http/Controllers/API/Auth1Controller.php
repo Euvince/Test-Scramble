@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Auth\AuthManager;
 
 class Auth1Controller extends Controller
 {
@@ -53,10 +54,10 @@ class Auth1Controller extends Controller
         }
     }
 
-    public function logout() : JsonResponse
+    public function logout(AuthManager $auth) : JsonResponse
     {
         try {
-            Auth::logout();
+            $auth->user()->currentAccessToken()->delete();
             return response()->json([
                 'message' => "Utilisateur déconnecté avec succès",
                 'status_code' => 200,
