@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Response\Post;
+namespace App\Responses\Role;
 
-use App\Http\Resources\Post\PostCollection;
+use App\Http\Resources\Role\RoleCollection;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class PostCollectionResponse implements Responsable
+class RoleCollectionResponse implements Responsable
 {
 
     public function __construct(
@@ -22,7 +22,7 @@ class PostCollectionResponse implements Responsable
     public function toResponse($request) {
         return response()->json(
             status : $this->statusCode,
-            data : PostCollection::make(
+            data : RoleCollection::make(
                 resource : $this->collection,
             )->response()->getData(),
         );

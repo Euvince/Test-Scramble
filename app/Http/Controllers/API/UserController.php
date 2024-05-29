@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Actions\Auth\StoreUserAction;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User\UserResource;
-use App\Response\User\SingleUserResponse;
-use App\Response\User\UserCollectionResponse;
+use App\Responses\User\SingleUserResponse;
+use App\Responses\User\UserCollectionResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class UserController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Response\Comment;
+namespace App\Responses\Comment;
 
 use App\Http\Resources\Comment\CommentCollection;
 use Illuminate\Database\Eloquent\Collection;

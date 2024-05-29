@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\AuthManager;
 
-class Auth1Controller extends Controller
+class AuthExempleController extends Controller
 {
 
     public function register (RegisterRequest $request) : JsonResponse {

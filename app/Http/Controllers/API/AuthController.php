@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Actions\Auth\StoreUserAction;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User\UserResource;
-use App\Response\User\SingleUserResponse;
+use App\Responses\User\SingleUserResponse;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
