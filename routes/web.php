@@ -18,6 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('lg', static fn (AuthManager $authManager) => dd($authManager->user()));
-
-Route::get('lgn', static fn () => App\Models\User::firstOrFail()->createToken('auth_user')->plainTextToken);
+/* Route::get('lg', static fn (AuthManager $authManager) => dd($authManager->user()));
+Route::get('lgn', static fn () => App\Models\User::firstOrFail()->createToken('auth_user')->plainTextToken); */

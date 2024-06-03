@@ -25,7 +25,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        /* $this->app->instance(abstract : LoginResponse::class, instance : new class implements LoginResponse {
+        $this->app->instance(abstract : LoginResponse::class, instance : new class implements LoginResponse {
             public function toResponse($request) {
                 if ($request->wantsJson()) {
                     $user = User::where('email', $request->email)->first();
@@ -36,9 +36,9 @@ class FortifyServiceProvider extends ServiceProvider
                     ], status : 200);
                 }
             }
-        }); */
+        });
 
-        /* $this->app->instance(abstract : RegisterResponse::class, instance : new class implements RegisterResponse {
+        $this->app->instance(abstract : RegisterResponse::class, instance : new class implements RegisterResponse {
             public function toResponse($request) {
                 if ($request->wantsJson()) {
                     $user = User::where('email', $request->email)->first();
@@ -49,7 +49,7 @@ class FortifyServiceProvider extends ServiceProvider
                     ], status : 201);
                 }
             }
-        }); */
+        });
 
         /* $this->app->instance(abstract : LoginResponse::class, instance : new AuthLoginResponse());
         $this->app->instance(abstract : RegisterResponse::class, instance : new AuthRegisterResponse()); */
