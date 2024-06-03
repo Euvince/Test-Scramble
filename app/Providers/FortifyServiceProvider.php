@@ -14,9 +14,13 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use App\Responses\Auth\LoginResponse as AuthLoginResponse;
-use App\Responses\Auth\RegisterResponse as AuthRegisterResponse;
-use Laravel\Fortify\Contracts\{LoginResponse, RegisterResponse};
+use App\Http\Responses\Auth\{
+    LoginResponse as AuthLoginResponse,
+    LogoutResponse as AuthLogoutResponse,
+    RegisterResponse as AuthRegisterResponse,
+    ProfileInformationUpdatedResponse as AuthProfileInformationUpdatedResponse
+};
+use Laravel\Fortify\Contracts\{LoginResponse, LogoutResponse, ProfileInformationUpdatedResponse, RegisterResponse};
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -25,18 +29,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->instance(abstract : LoginResponse::class, instance : new class implements LoginResponse {
-            public function toResponse($request) {
-                if ($request->wantsJson()) {
-                    $user = User::where('email', $request->email)->first();
-                    return response()->json(data : [
-                        "message" => "Utilisateur authentifié avec succès",
-                        "user" => $user,
-                        "token" => $user->createToken($request->email)->plainTextToken
-                    ], status : 200);
-                }
-            }
-        });
 
         $this->app->instance(abstract : RegisterResponse::class, instance : new class implements RegisterResponse {
             public function toResponse($request) {
@@ -51,8 +43,42 @@ class FortifyServiceProvider extends ServiceProvider
             }
         });
 
-        /* $this->app->instance(abstract : LoginResponse::class, instance : new AuthLoginResponse());
-        $this->app->instance(abstract : RegisterResponse::class, instance : new AuthRegisterResponse()); */
+        $this->app->instance(abstract : LoginResponse::class, instance : new class implements LoginResponse {
+            public function toResponse($request) {
+                if ($request->wantsJson()) {
+                    $user = User::where('email', $request->email)->first();
+                    return response()->json(data : [
+                        "message" => "Utilisateur authentifié avec succès",
+                        "user" => $user,
+                        "token" => $user->createToken($request->email)->plainTextToken
+                    ], status : 200);
+                }
+            }
+        });
+
+        $this->app->instance(abstract : LogoutResponse::class, instance : new class implements LogoutResponse {
+            public function toResponse($request) {
+                return response()->json(data : [
+                    "message" => "Utilisateur déconnecté avec succès",
+                ], status : 200);
+            }
+        });
+
+        $this->app->instance(abstract : ProfileInformationUpdatedResponse::class, instance : new class implements ProfileInformationUpdatedResponse {
+            public function toResponse($request) {
+                if ($request->wantsJson()) {
+                    return response()->json(data : [
+                        "message" => "Informations de profil modifiées avec succès",
+                        "user" => $request->user(),
+                    ], status : 200);
+                }
+            }
+        });
+
+        /* $this->app->instance(abstract : RegisterResponse::class, instance : new AuthRegisterResponse());
+        $this->app->instance(abstract : LoginResponse::class, instance : new AuthLoginResponse());
+        $this->app->instance(abstract : LogoutResponse::class, instance : new AuthLogoutResponse());
+        $this->app->instance(abstract : ProfileInformationUpdatedResponse::class, instance : new AuthProfileInformationUpdatedResponse()); */
 
     }
 

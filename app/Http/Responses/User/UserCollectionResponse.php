@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Responses\Comment;
+namespace App\Http\Responses\User;
 
-use App\Http\Resources\Comment\CommentCollection;
+use App\Http\Resources\User\UserCollection;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class CommentCollectionResponse implements Responsable
+class UserCollectionResponse implements Responsable
 {
 
     public function __construct(
@@ -22,7 +22,7 @@ class CommentCollectionResponse implements Responsable
     public function toResponse($request) {
         return response()->json(
             status : $this->statusCode,
-            data : CommentCollection::make(
+            data : UserCollection::make(
                 resource : $this->collection,
             )->response()->getData(),
         );

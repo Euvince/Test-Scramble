@@ -8,8 +8,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Requests\RoleRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Role\RoleResource;
-use App\Responses\Role\SingleRoleResponse;
-use App\Responses\Role\RoleCollectionResponse;
+use App\Http\Responses\Role\SingleRoleResponse;
+use App\Http\Responses\Role\RoleCollectionResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class RoleController extends Controller

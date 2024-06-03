@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Responses\Post;
+namespace App\Http\Responses\Role;
 
-use App\Http\Resources\Post\PostResource;
+use App\Http\Resources\Role\RoleResource;
 use Illuminate\Contracts\Support\Responsable;
 
-class SinglePostResponse implements Responsable
+class SingleRoleResponse implements Responsable
 {
 
     public function __construct(
         private readonly string $message,
         private readonly int $statusCode = 200,
-        private readonly PostResource|array $resource,
+        private readonly RoleResource|array $resource,
     )
     {
     }

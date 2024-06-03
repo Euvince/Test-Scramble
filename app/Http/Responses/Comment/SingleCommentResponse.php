@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Responses\User;
+namespace App\Http\Responses\Comment;
 
-use App\Http\Resources\User\UserResource;
 use Illuminate\Contracts\Support\Responsable;
+use App\Http\Resources\Comment\CommentResource;
 
-class SingleUserResponse implements Responsable
+class SingleCommentResponse implements Responsable
 {
 
     public function __construct(
         private readonly string $message,
         private readonly int $statusCode = 200,
-        private readonly UserResource|array $resource,
-        private readonly string|null $token = null,
+        private readonly CommentResource|array $resource,
     )
     {
     }
@@ -23,7 +22,6 @@ class SingleUserResponse implements Responsable
             data : [
                 'status' => $this->statusCode,
                 'message' => $this->message,
-                'token' => $this->token,
                 'data' =>   $this->resource,
             ]
         );

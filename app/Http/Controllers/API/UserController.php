@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Auth\StoreUserAction;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\User\UserResource;
-use App\Responses\User\SingleUserResponse;
-use App\Responses\User\UserCollectionResponse;
+use App\Http\Responses\User\SingleUserResponse;
+use App\Http\Responses\User\UserCollectionResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class UserController extends Controller
@@ -41,7 +42,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegisterRequest $request) : SingleUserResponse
+    /* public function store(RegisterRequest $request) : SingleUserResponse
     {
         $user = StoreUserAction::handle(
             name : $request->name,
@@ -54,7 +55,7 @@ class UserController extends Controller
             message : "Utilisateur crée avec succès",
             resource : new UserResource(resource : User::query()->with(['roles'])->where('id', $user->id)->first())
         );
-    }
+    } */
 
     /**
      * Display the specified resource.
@@ -71,7 +72,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RegisterRequest $request, User $user) : SingleUserResponse
+    /* public function update(RegisterRequest $request, User $user) : SingleUserResponse
     {
         unset($request->validated()['password']);
         $user->update(array_merge($request->validated(), ['password' => Hash::make($request->password)]));
@@ -80,7 +81,7 @@ class UserController extends Controller
             message : "Utilisateur édité avec succès",
             resource : new UserResource(resource : User::query()->with(['posts', 'comments', 'roles'])->where('id', $user->id)->first())
         );
-    }
+    } */
 
     /**
      * Remove the specified resource from storage.
@@ -88,6 +89,10 @@ class UserController extends Controller
     public function destroy(User $user) : JsonResponse
     {
         $user->delete();
+        /* if($user->profile_picture_path !== '') {
+            $picturePath = 'public/' . $user->profile_picture_path;
+            if(Storage::exists($picturePath)) Storage::delete('public/' . $user->profile_picture_path);
+        } */
         return response()->json([
             'status' => 200,
             'message' => "Utilisateur supprimé avec succès",

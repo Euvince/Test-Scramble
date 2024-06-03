@@ -8,8 +8,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post\PostResource;
-use App\Responses\Post\SinglePostResponse;
-use App\Responses\Post\PostCollectionResponse;
+use App\Http\Responses\Post\SinglePostResponse;
+use App\Http\Responses\Post\PostCollectionResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PostController extends Controller

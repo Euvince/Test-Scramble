@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$verificationLimiter = config('fortify.limiters.verification', '6,1');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/* Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register'])->name('register');
-Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login'])->name('login'); */
+/* Route::post('register', [App\Http\Controllers\API\Auth\AuthController::class, 'register'])->name('register');
+Route::post('login', [App\Http\Controllers\API\Auth\AuthController::class, 'login'])->name('login'); */
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource(name : 'roles', controller : App\Http\Controllers\API\RoleController::class);
@@ -27,6 +29,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource(name : 'posts', controller : App\Http\Controllers\API\PostController::class);
     Route::apiResource(name : 'posts.comments', controller : App\Http\Controllers\API\CommentController::class);
 
-    /* Route::get('logout', [App\Http\Controllers\API\AuthController::class, 'logout'])->name('logout'); */
+    /* Route::get('logout', [App\Http\Controllers\API\Auth\AuthController::class, 'logout'])->name('logout'); */
 });
+
+Route::post(uri : 'email/verification-notification', action : [App\Http\Controllers\API\Auth\EmailVerificationNotificationController::class, 'store'])
+    ->middleware([
+        'auth:sanctum',
+        'throttle:'.$verificationLimiter
+    ]);
 

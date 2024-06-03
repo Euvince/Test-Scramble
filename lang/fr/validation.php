@@ -179,7 +179,7 @@ return [
         'minute'                   => 'minute',
         'mobile'                   => 'portable',
         'month'                    => 'mois',
-        'name'                     => 'Libellé',
+        'name'                     => 'nom',
         'national_code'            => 'code national',
         'number'                   => 'numéro',
         'password'                 => 'mot de passe',
@@ -242,5 +242,6 @@ return [
         'destinataire'             => 'Destinataire',
         'reference'                => 'Référence',
         'datenaissance'            => 'Date de naissance',
+        'picture_profil_path'      => 'photo de profil',
     ],
 ];

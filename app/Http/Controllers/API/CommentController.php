@@ -9,8 +9,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Http\Resources\Comment\CommentResource;
-use App\Responses\Comment\SingleCommentResponse;
-use App\Responses\Comment\CommentCollectionResponse;
+use App\Http\Responses\Comment\SingleCommentResponse;
+use App\Http\Responses\Comment\CommentCollectionResponse;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CommentController extends Controller

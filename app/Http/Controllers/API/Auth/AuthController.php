@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Models\User;
 use App\Actions\Auth\LogUserAction;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Actions\Auth\StoreUserAction;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\User\UserResource;
-use App\Responses\User\SingleUserResponse;
+use App\Http\Responses\User\SingleUserResponse;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
