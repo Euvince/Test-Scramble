@@ -38,3 +38,6 @@ Route::post(uri : 'email/verification-notification', action : [App\Http\Controll
         'throttle:'.$verificationLimiter
     ]);
 
+Route::post(uri : 'update-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'update']);
+Route::post(uri : 'remove-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'delete']);
+
