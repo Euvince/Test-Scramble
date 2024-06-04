@@ -18,9 +18,13 @@ use App\Http\Responses\Auth\{
     LoginResponse as AuthLoginResponse,
     LogoutResponse as AuthLogoutResponse,
     RegisterResponse as AuthRegisterResponse,
+    PasswordUpdateResponse as AuthPasswordUpdateResponse,
     ProfileInformationUpdatedResponse as AuthProfileInformationUpdatedResponse
 };
-use Laravel\Fortify\Contracts\{LoginResponse, LogoutResponse, ProfileInformationUpdatedResponse, RegisterResponse};
+use Laravel\Fortify\Contracts\{
+    LoginResponse, LogoutResponse, PasswordUpdateResponse,
+    ProfileInformationUpdatedResponse, RegisterResponse
+};
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -68,7 +72,18 @@ class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request) {
                 if ($request->wantsJson()) {
                     return response()->json(data : [
-                        "message" => "Informations de profil modifiées avec succès",
+                        "message" => "Informations de profile modifiées avec succès",
+                        "user" => $request->user(),
+                    ], status : 200);
+                }
+            }
+        });
+
+        $this->app->instance(abstract : PasswordUpdateResponse::class, instance : new class implements PasswordUpdateResponse {
+            public function toResponse($request) {
+                if ($request->wantsJson()) {
+                    return response()->json(data : [
+                        "message" => "Mot de passe modifié avec succès",
                         "user" => $request->user(),
                     ], status : 200);
                 }
@@ -78,7 +93,8 @@ class FortifyServiceProvider extends ServiceProvider
         /* $this->app->instance(abstract : RegisterResponse::class, instance : new AuthRegisterResponse());
         $this->app->instance(abstract : LoginResponse::class, instance : new AuthLoginResponse());
         $this->app->instance(abstract : LogoutResponse::class, instance : new AuthLogoutResponse());
-        $this->app->instance(abstract : ProfileInformationUpdatedResponse::class, instance : new AuthProfileInformationUpdatedResponse()); */
+        $this->app->instance(abstract : ProfileInformationUpdatedResponse::class, instance : new AuthProfileInformationUpdatedResponse());
+        $this->app->instance(abstract : PasswordUpdateResponse::class, instance : new AuthPasswordUpdateResponse()); */
 
     }
 

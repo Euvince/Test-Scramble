@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\Comment;
-use App\Models\Traits\HasProfilPicture;
+use App\Models\Traits\HasProfilePicture;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -21,7 +21,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasProfilPicture, HasApiTokens, HasFactory, Notifiable, SoftDeletes, TwoFactorAuthenticatable;
+    use HasProfilePicture, HasApiTokens, HasFactory, Notifiable, SoftDeletes, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.

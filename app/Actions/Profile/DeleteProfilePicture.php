@@ -2,7 +2,7 @@
 
 namespace App\Actions\Profile;
 
-use App\Contarcts\DeleteUserPicture;
+use App\Contracts\DeleteUserPicture;
 
 class DeleteProfilePicture implements DeleteUserPicture
 {

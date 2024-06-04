@@ -242,6 +242,6 @@ return [
         'destinataire'             => 'Destinataire',
         'reference'                => 'Référence',
         'datenaissance'            => 'Date de naissance',
-        'picture_profil_path'      => 'photo de profil',
+        'profile_picture_path'      => 'photo de profil',
     ],
 ];

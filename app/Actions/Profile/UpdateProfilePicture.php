@@ -3,7 +3,7 @@
 namespace App\Actions\Profile;
 
 use Illuminate\Http\UploadedFile;
-use App\Contarcts\UpdateUserPicture;
+use App\Contracts\UpdateUserPicture;
 use Illuminate\Support\Facades\Validator;
 
 class UpdateProfilePicture implements UpdateUserPicture
@@ -17,7 +17,7 @@ class UpdateProfilePicture implements UpdateUserPicture
          */
         $picture = $input['profile_picture_path'];
         if (isset($picture)) {
-            $user->updateProfilPicture($picture);
+            $user->updateProfilePicture($picture);
         }
     }
 }

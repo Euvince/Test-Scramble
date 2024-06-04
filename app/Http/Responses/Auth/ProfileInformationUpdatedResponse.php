@@ -8,7 +8,7 @@ class ProfileInformationUpdatedResponse implements ContractsProfileInformationUp
 {
     public function toResponse($request) {
         return response()->json(data : [
-            "message" => "Informations de profil modifiées avec succès",
+            "message" => "Informations de profile modifiées avec succès",
         ], status : 200);
     }
 }

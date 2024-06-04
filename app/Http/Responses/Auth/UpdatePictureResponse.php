@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses\Auth;
 
-use App\Contratcs\BaseResponse;
+use App\Contracts\BaseResponse;
 
 class UpdatePictureResponse implements BaseResponse
 {
@@ -15,7 +15,7 @@ class UpdatePictureResponse implements BaseResponse
     public function toResponse($request) {
         if ($request->wantsJson()) {
             return response()->json(data : [
-                "message" => "Photo de profil modifiée avec succès.",
+                "message" => "Photo de profile modifiée avec succès.",
             ], status : 200);
         }
     }

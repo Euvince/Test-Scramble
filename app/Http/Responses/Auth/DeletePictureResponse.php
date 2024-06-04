@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses\Auth;
 
-use App\Contratcs\BaseResponse;
+use App\Contracts\BaseResponse;
 
 class DeletePictureResponse implements BaseResponse
 {
@@ -13,10 +13,8 @@ class DeletePictureResponse implements BaseResponse
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function toResponse($request) {
-        if ($request->wantsJson()) {
-            return response()->json(data : [
-                "message" => "Photo de profil supprimée avec succès.",
-            ], status : 200);
-        }
+        return response()->json(data : [
+            "message" => "Photo de profile supprimée avec succès.",
+        ], status : 200);
     }
 }

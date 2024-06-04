@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource(name : 'posts.comments', controller : App\Http\Controllers\API\CommentController::class);
 
     /* Route::get('logout', [App\Http\Controllers\API\Auth\AuthController::class, 'logout'])->name('logout'); */
+
+    Route::post(uri : 'update-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'update']);
+    Route::post(uri : 'remove-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'delete']);
 });
 
 Route::post(uri : 'email/verification-notification', action : [App\Http\Controllers\API\Auth\EmailVerificationNotificationController::class, 'store'])
@@ -37,7 +40,4 @@ Route::post(uri : 'email/verification-notification', action : [App\Http\Controll
         'auth:sanctum',
         'throttle:'.$verificationLimiter
     ]);
-
-Route::post(uri : 'update-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'update']);
-Route::post(uri : 'remove-profile-picture', action : [App\Http\Controllers\API\Auth\ProfilePictureController::class, 'delete']);
 

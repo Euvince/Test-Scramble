@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses\Auth;
 
-use App\Contratcs\BaseResponse;
+use App\Contracts\BaseResponse;
 
 class SendEmailResponse implements BaseResponse
 {

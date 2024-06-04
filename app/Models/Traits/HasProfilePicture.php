@@ -5,7 +5,7 @@ namespace App\Models\Traits;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-trait HasProfilPicture
+trait HasProfilePicture
 {
     /**
      * Update the user's profile picture
@@ -13,7 +13,7 @@ trait HasProfilPicture
      * @param \Illuminate\Http\UploadedFile $picture
      * @return void
      */
-    public function updateProfilPicture (UploadedFile $picture) : void {
+    public function updateProfilePicture (UploadedFile $picture) : void {
         tap(value : $this->profile_picture_path, callback : function ($previous) use($picture) {
             $this->forceFill([
                 'profile_picture_path' => $picture->storePublicly(

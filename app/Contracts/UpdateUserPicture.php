@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contarcts;
+namespace App\Contracts;
 
 interface UpdateUserPicture
 {
