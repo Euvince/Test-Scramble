@@ -46,7 +46,6 @@ class FortifyServiceProvider extends ServiceProvider
                 }
             }
         });
-
         $this->app->instance(abstract : LoginResponse::class, instance : new class implements LoginResponse {
             public function toResponse($request) {
                 if ($request->wantsJson()) {
@@ -59,7 +58,6 @@ class FortifyServiceProvider extends ServiceProvider
                 }
             }
         });
-
         $this->app->instance(abstract : LogoutResponse::class, instance : new class implements LogoutResponse {
             public function toResponse($request) {
                 return response()->json(data : [
@@ -67,7 +65,6 @@ class FortifyServiceProvider extends ServiceProvider
                 ], status : 200);
             }
         });
-
         $this->app->instance(abstract : ProfileInformationUpdatedResponse::class, instance : new class implements ProfileInformationUpdatedResponse {
             public function toResponse($request) {
                 if ($request->wantsJson()) {
@@ -78,7 +75,6 @@ class FortifyServiceProvider extends ServiceProvider
                 }
             }
         });
-
         $this->app->instance(abstract : PasswordUpdateResponse::class, instance : new class implements PasswordUpdateResponse {
             public function toResponse($request) {
                 if ($request->wantsJson()) {
